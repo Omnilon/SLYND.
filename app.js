@@ -136,12 +136,11 @@ async function main() {
     }
   });
 
-  app.post('/login', passport.authenticate('local', {
-    successRedirect: '/dashboard',
-    failureRedirect: '/login',
-    failureFlash: 'Invalid username or password.',
-successFlash: 'Welcome!'
-}));
+  app.post('/login', (req, res) => {
+    console.log('Login route hit, body:', req.body);
+    res.send('Simple login route is working!');
+  });
+  
 
 app.get('/logout', (req, res) => {
   req.logout();
