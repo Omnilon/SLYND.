@@ -86,6 +86,24 @@ async function main() {
       }));  
     app.use(passport.initialize());
     app.use(passport.session());
+      
+    passport.use(new LocalStrategy({ usernameField: 'email' }, async (email, password, done) => {
+      try {                               
+        const user = await collection.findOne({ email: email });
+        if (!user || !(await bcrypt.compare(password, user.password))) {
+          return done(null, false, { message: 'Incorrect email or password.' });
+        }
+        return done(null, user);
+      } catch (e) {
+        return done(e);
+      }
+    }));
+
+    passport.serializeUser((user, done) => done(null, user._id));
+    passport.deserializeUser((id, done) => {
+      collection.findOne({ _id: new ObjectId(id) }, (err, user) => done(err, user));
+    });
+    
     app.use(express.urlencoded({ extended: false }));
     
     app.use(require('connect-flash')());
@@ -97,6 +115,46 @@ async function main() {
         res.locals.messages = req.flash();
         next();
       });
+
+      app.get('/login', function(req, res) {
+        res.render('login');
+    });
+
+    app.get('/register', function(req, res) {
+      res.render('register');
+  });
+
+  app.post('/register', async (req, res) => {
+    try {
+      const hashedPassword = await bcrypt.hash(req.body.password, 10);
+      const user = { username: req.body.username, email: req.body.email, password: hashedPassword };
+      await collection.insertOne(user);
+      res.redirect('/login');
+    } catch (error) {
+      console.error(error);
+      res.redirect('/register');
+    }
+  });
+
+  app.post('/login', passport.authenticate('local', {
+    successRedirect: '/dashboard',
+    failureRedirect: '/login',
+    failureFlash: 'Invalid username or password.',
+successFlash: 'Welcome!'
+}));
+
+app.get('/logout', (req, res) => {
+  req.logout();
+  res.redirect('/login');
+});
+
+app.get('/dashboard', function(req, res) {
+  if(req.isAuthenticated()) {
+      res.render('dashboard', { user: req.user });
+  } else {
+      res.redirect('/login');
+  }
+});
 
 // Catch 404 and forward to error handler
 app.use((req, res, next) => {
@@ -125,98 +183,14 @@ app.use((req, res, next) => {
     // Application specific logging, throwing an error, or other logic here
   });
   
-  
-      
-      
-
-    
-
-    app.get('/login', function(req, res) {
-        res.render('login');
-    });
 
 
-
-
-    app.get('/register', function(req, res) {
-        res.render('register');
-    });
-
-
-
-
-    passport.use(new LocalStrategy({ usernameField: 'email' }, async (email, password, done) => {
-      try {                               
-        const user = await collection.findOne({ email: email });
-        if (!user || !(await bcrypt.compare(password, user.password))) {
-          return done(null, false, { message: 'Incorrect email or password.' });
-        }
-        return done(null, user);
-      } catch (e) {
-        return done(e);
-      }
-    }));
-
-
-
-
-    passport.serializeUser((user, done) => done(null, user._id));
-    passport.deserializeUser((id, done) => {
-      collection.findOne({ _id: new ObjectId(id) }, (err, user) => done(err, user));
-    });
-
-
-
-
-    app.post('/register', async (req, res) => {
-      try {
-        const hashedPassword = await bcrypt.hash(req.body.password, 10);
-        const user = { username: req.body.username, email: req.body.email, password: hashedPassword };
-        await collection.insertOne(user);
-        res.redirect('/login');
-      } catch (error) {
-        console.error(error);
-        res.redirect('/register');
-      }
-    });
-
-
-
-
-    app.post('/login', passport.authenticate('local', {
-        successRedirect: '/dashboard',
-        failureRedirect: '/login',
-        failureFlash: 'Invalid username or password.',
-    successFlash: 'Welcome!'
-}));
-
-
-
-
-    app.get('/logout', (req, res) => {
-      req.logout();
-      res.redirect('/login');
-    });
-
-
-    app.get('/dashboard', function(req, res) {
-        if(req.isAuthenticated()) {
-            res.render('dashboard', { user: req.user });
-        } else {
-            res.redirect('/login');
-        }
-    });
-
-
-    const PORT = process.env.PORT || 3000;
+   const PORT = process.env.PORT || 3000;
     const server = app.listen(PORT, () => {
       console.log(`Server is running on port ${PORT}`);
     });
 
-
-
-
-    // Graceful shutdown logic
+  // Graceful shutdown logic
     function gracefulShutdown() {
       console.log('Shutting down gracefully...');
       server.close(() => {
