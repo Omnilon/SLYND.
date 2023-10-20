@@ -3,3 +3,8 @@
 {"level":"error","message":"404 - Not Found - /login - GET - ::1","service":"user-service"}
 {"level":"info","message":"GET /login","service":"user-service"}
 {"level":"error","message":"404 - Not Found - /login - GET - ::1","service":"user-service"}
+{"level":"info","message":"Hello, Winston!","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"error","message":"404 - Not Found - /register - GET - ::1","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"error","message":"404 - Not Found - /register - GET - ::1","service":"user-service"}

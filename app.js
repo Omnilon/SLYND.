@@ -107,17 +107,18 @@ app.use((req, res, next) => {
   
   // Error handler
   app.use((err, req, res, next) => {
+    // Log the error
+    logger.error(`${err.status || 500} - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
+  
     // Set locals, only providing error in development
     res.locals.message = err.message;
     res.locals.error = req.app.get('env') === 'development' ? err : {};
   
-    // Log the error
-    logger.error(`${err.status || 500} - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
-  
     // Render the error page
     res.status(err.status || 500);
-    res.render('error');
+    res.render('error', { env: req.app.get('env') }); // pass the environment to the EJS template
   });
+  
 
   process.on('unhandledRejection', (reason, promise) => {
     console.error('Unhandled Rejection at:', promise, 'reason:', reason);
