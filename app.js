@@ -125,6 +125,13 @@ async function main() {
       res.render('register');
   });
 
+  app.post('/login', passport.authenticate('local', {
+    successRedirect: '/dashboard',
+    failureRedirect: '/login',
+    failureFlash: 'Invalid username or password.',
+successFlash: 'Welcome!'
+}));
+
   app.post('/register', async (req, res) => {
     try {
       const hashedPassword = await bcrypt.hash(req.body.password, 10);
@@ -136,13 +143,6 @@ async function main() {
       res.redirect('/register');
     }
   });
-
-  app.post('/login', passport.authenticate('local', {
-    successRedirect: '/dashboard',
-    failureRedirect: '/login',
-    failureFlash: 'Invalid username or password.',
-successFlash: 'Welcome!'
-}));
 
 app.get('/logout', (req, res) => {
   req.logout();
