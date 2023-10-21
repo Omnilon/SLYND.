@@ -29,3 +29,4 @@
 {"level":"info","message":"POST /login","service":"user-service"}
 {"level":"info","message":"Hello, Winston!","service":"user-service"}
 {"level":"info","message":"Hello, Winston!","service":"user-service"}
+{"level":"info","message":"Hello, Winston!","service":"user-service"}

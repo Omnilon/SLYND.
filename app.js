@@ -138,29 +138,12 @@ async function main() {
     }
   });
 
-  app.post('/login', function(req, res, next) {
-    passport.authenticate('local', function(err, user, info) {
-      if (err) {
-        logger.error('An error occurred during authentication:', err);
-        return next(err); // handle the error according to your needs
-      }
-      if (!user) {
-        logger.info('Authentication failed:', info);
-        req.flash('error', 'Invalid username or password.'); // Adding flash message for failed login attempt
-        return res.redirect('/login'); // redirect back to login with a message
-      }
-      req.logIn(user, function(err) {
-        if (err) {
-          logger.error('Error while establishing a session:', err);
-          return next(err); // handle the error according to your needs
-        }
-        logger.info('Authentication successful, redirecting...');
-        req.flash('success', 'Welcome!'); // Adding flash message for successful login
-        return res.redirect('/dashboard'); // redirect to the dashboard or desired page
-      });
-    })(req, res, next);
-  });
-
+  app.post('/login', passport.authenticate('local', {
+    successRedirect: '/dashboard',
+    failureRedirect: '/login',
+    failureFlash: 'Invalid username or password.',
+successFlash: 'Welcome!'
+}));
   
 
 app.get('/logout', (req, res) => {
