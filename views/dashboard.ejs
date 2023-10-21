@@ -10,11 +10,6 @@
 <body>
 <div class='container'>
 <h2>Dashboard</h2>
-<% if (messages.success) { %>
-    <% messages.success.forEach(function(message) { %>
-        <div class="alert alert-success"><%= message %></div>
-    <% }) %>
-<% } %>
 <div id='user-info'>
 <h1><p><strong> <%= user.name %>'s Hub </strong></p></h1>
 </div>
