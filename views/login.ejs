@@ -10,6 +10,11 @@
 <body>
     <div class='container'>
         <h2>Login</h2>
+        <% if (messages.error) { %>
+            <% messages.error.forEach(function(message) { %>
+                <div class="alert alert-danger"><%= message %></div>
+            <% }) %>
+        <% } %>
         <!-- The action is the endpoint the form data will be sent to, and the method is the HTTP method, which should be POST in this case -->
         <form id='login-form' action='/login' method='POST'>
             <!-- The name attribute is important for the server to be able to read the data -->

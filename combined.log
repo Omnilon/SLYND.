@@ -20,3 +20,10 @@
 {"level":"info","message":"POST /login","service":"user-service"}
 {"level":"info","message":"Hello, Winston!","service":"user-service"}
 {"level":"info","message":"Hello, Winston!","service":"user-service"}
+{"level":"info","message":"Hello, Winston!","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"GET /favicon.ico","service":"user-service"}
+{"level":"error","message":"404 - Not Found - /favicon.ico - GET - ::1","service":"user-service"}
+{"level":"info","message":"POST /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"POST /login","service":"user-service"}
