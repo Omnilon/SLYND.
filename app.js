@@ -82,7 +82,7 @@ async function main() {
           autoRemove: 'native', // Default
         }),
         cookie: {
-            secure: process.env.NODE_ENV === 'production', // Set to true only in production
+            secure: false, // Set to true only in production
           httpOnly: true,
           maxAge: 14 * 24 * 60 * 60 * 1000, // = 14 days
         }
