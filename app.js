@@ -102,12 +102,6 @@ async function main() {
       }
     }));
 
-    passport.serializeUser((user, done) => done(null, user._id));
-    passport.deserializeUser((id, done) => {
-      collection.findOne({ _id: new ObjectId(id) }, (err, user) => done(err, user));
-    });
-   
-
     app.use(require('connect-flash')());
     app.use((req, res, next) => {
         logger.info(`${req.method} ${req.url}`);
@@ -118,17 +112,27 @@ async function main() {
         next();
       });
       
-      app.get('/', (req, res) => {
-        res.redirect('/login');
+    passport.serializeUser((user, done) => done(null, user._id));
+    passport.deserializeUser((id, done) => {
+    collection.findOne({ _id: new ObjectId(id) }, (err, user) => done(err, user));
     });
-    
-      app.get('/login', function(req, res) {
-        res.render('login');
-    });
-
-    app.get('/register', function(req, res) {
-      res.render('register');
+   
+    app.get('/', (req, res) => {
+      res.redirect('/login');
   });
+    app.get('/login', (req, res) => { 
+    res.render('login'); });
+
+    app.get('/register', (req, res) => {
+       res.render('register'); });
+
+  app.get('/dashboard', (req, res) => {
+    if(req.isAuthenticated()) {
+        res.render('dashboard', { user: req.user });
+    } else {
+        res.redirect('/login');
+    }
+});
 
   app.post('/register', async (req, res) => {
     try {
@@ -152,14 +156,6 @@ successFlash: 'Welcome!'
 app.get('/logout', (req, res) => {
   req.logout();
   res.redirect('/login');
-});
-
-app.get('/dashboard', function(req, res) {
-  if(req.isAuthenticated()) {
-      res.render('dashboard', { user: req.user });
-  } else {
-      res.redirect('/login');
-  }
 });
 
 // Catch 404 and forward to error handler
