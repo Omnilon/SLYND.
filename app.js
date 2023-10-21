@@ -1,6 +1,3 @@
-require('dotenv').config();
-
-
 const helmet = require('helmet');
 const express = require('express');
 const path = require('path');
@@ -125,13 +122,6 @@ async function main() {
       res.render('register');
   });
 
-  app.post('/login', passport.authenticate('local', {
-    successRedirect: '/dashboard',
-    failureRedirect: '/login',
-    failureFlash: 'Invalid username or password.',
-successFlash: 'Welcome!'
-}));
-
   app.post('/register', async (req, res) => {
     try {
       const hashedPassword = await bcrypt.hash(req.body.password, 10);
@@ -143,6 +133,13 @@ successFlash: 'Welcome!'
       res.redirect('/register');
     }
   });
+
+  app.post('/login', passport.authenticate('local', {
+    successRedirect: '/dashboard',
+    failureRedirect: '/login',
+    failureFlash: 'Invalid username or password.',
+successFlash: 'Welcome!'
+}));
 
 app.get('/logout', (req, res) => {
   req.logout();
