@@ -117,9 +117,7 @@ async function main() {
     collection.findOne({ _id: new ObjectId(id) }, (err, user) => done(err, user));
     });
    
-    app.get('/', (req, res) => {
-      res.redirect('/login');
-  });
+
     app.get('/login', (req, res) => { 
     res.render('login'); });
 
