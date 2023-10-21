@@ -83,7 +83,7 @@ async function main() {
         }),
         cookie: {
             secure: false, // Set to true only in production
-          httpOnly: true,
+          httpOnly: false,
           maxAge: 14 * 24 * 60 * 60 * 1000, // = 14 days
         }
       }));  
