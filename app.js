@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const helmet = require('helmet');
 const express = require('express');
 const path = require('path');
@@ -64,6 +66,9 @@ async function main() {
    
 
     app.use(express.static(path.join(__dirname, 'public')));
+
+    app.use(express.urlencoded({ extended: false }));
+
     app.use(helmet());
     app.use(session({
         secret: process.env.SESSION_SECRET,
@@ -102,8 +107,7 @@ async function main() {
       collection.findOne({ _id: new ObjectId(id) }, (err, user) => done(err, user));
     });
    
-    app.use(express.urlencoded({ extended: false }));
-   
+
     app.use(require('connect-flash')());
     app.use((req, res, next) => {
         logger.info(`${req.method} ${req.url}`);
