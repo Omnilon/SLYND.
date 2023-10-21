@@ -117,7 +117,11 @@ async function main() {
         res.locals.messages = req.flash();
         next();
       });
-
+      
+      app.get('/', (req, res) => {
+        res.redirect('/login');
+    });
+    
       app.get('/login', function(req, res) {
         res.render('login');
     });
