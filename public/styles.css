@@ -31,8 +31,7 @@ body, html {
     margin-bottom: 20px; /* Increased space between tagline and container */
 }
 
-/* New styles for the illusion effect */
-.form-container {
+.container {
     width: 80%; /* or any specific percentage you prefer */
     min-width: 600px; /* ensures that the container takes up at least this much space */
     max-width: 600px; /* optional: you can set this to ensure the containers don't get too wide on larger screens */
@@ -43,26 +42,6 @@ body, html {
     border: 2px solid #FF69B4;
     text-align: left;
     margin-bottom: 20px; /* Space between containers */
-    overflow: hidden; /* Ensure the container doesn't show content outside its bounds */
-    position: relative; /* Set to relative to allow absolute positioning within this container */
-}
-
-/* Styles for the individual form containers */
-#login-form, #register-form {
-    position: absolute; /* Absolute positioning to allow the forms to sit on top of each other */
-    top: 0;
-    left: 0;
-    width: 100%;
-    transition: transform 0.3s ease; /* Smooth transition effect */
-}
-
-/* Styles to hide the form off-screen */
-#login-form.hide {
-    transform: translateX(-100%);
-}
-
-#register-form.hide {
-    transform: translateX(100%);
 }
 
 h2, h3 {
