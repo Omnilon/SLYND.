@@ -337,3 +337,313 @@
 {"level":"info","message":"GET /login","service":"user-service"}
 {"level":"info","message":"Request received: GET /register","service":"user-service"}
 {"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
