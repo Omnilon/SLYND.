@@ -156,7 +156,7 @@ async function main() {
         }
     });
 
-    app.post('/login', (req, res, next) => {
+    app.post('/dashboard', (req, res, next) => {
         logger.info('POST /login');
         passport.authenticate('local', (err, user, info) => {
             if (err) { 
