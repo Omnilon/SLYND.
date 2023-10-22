@@ -4,7 +4,7 @@ body, html {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start; /* Align to the top */
     text-align: center;
     font-family: 'Arial', sans-serif;
     background-color: #FFD6E8;
@@ -14,6 +14,7 @@ body, html {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    padding-top: 50px; /* Increased space from the top */
 }
 
 .slynd-header {
@@ -27,17 +28,19 @@ body, html {
 .slynd-tagline {
     font-size: 1.2em;
     margin-top: 0.25em;
+    margin-bottom: 20px; /* Increased space between tagline and container */
 }
 
 .container {
-    max-width: 600px;
-    width: 100%;
+    width: 100%; /* Full width */
+    max-width: 400px; /* Adjusted max-width for consistency */
     padding: 20px;
     border-radius: 15px;
     background: rgba(255, 255, 255, 0.8);
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     border: 2px solid #FF69B4;
     text-align: left;
+    margin-bottom: 20px; /* Space between containers */
 }
 
 h2, h3 {
@@ -53,7 +56,7 @@ h2, h3 {
 }
 
 button {
-    width: calc(100% - 20px);
+    width: 100%; /* Full width */
     padding: 10px;
     border-radius: 5px;
     border: none;
@@ -62,6 +65,7 @@ button {
     cursor: pointer;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     transition: all 0.3s ease;
+    margin-top: 20px; /* Added space above the button */
 }
 
 button:hover {
@@ -91,12 +95,13 @@ a, .footer button {
 }
 
 input[type='text'], input[type='email'], input[type='password'] {
-    width: calc(100% - 20px);
+    width: 100%; /* Full width */
     padding: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 20px; /* Consistent space between inputs */
     border-radius: 5px;
     border: 1px solid #FFB677;
     transition: border 0.3s ease;
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
 }
 
 input[type='text']:focus, input[type='email']:focus, input[type='password']:focus {
