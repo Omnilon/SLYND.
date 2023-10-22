@@ -741,3 +741,27 @@
 {"level":"info","message":"GET /login","service":"user-service"}
 {"level":"info","message":"Request received: GET /public/logo.png","service":"user-service"}
 {"level":"error","message":"404 - Not Found - /public/logo.png - GET - ::1","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
