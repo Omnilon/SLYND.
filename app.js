@@ -114,6 +114,13 @@ async function main() {
     });
 
     // Define your routes here
+
+    app.get('/', (req, res) => {
+      logger.info('GET /');
+      res.render('register');
+    });
+    
+
     app.get('/login', (req, res) => { 
         logger.info('GET /login');
         res.render('login'); 
