@@ -140,13 +140,15 @@ async function main() {
     });
 
     app.get('/dashboard', (req, res) => {
-      if(req.isAuthenticated()) {
-          res.send(`User is authenticated, username: ${req.user.username}`);
-      } else {
-          res.redirect('/login');
-      }
-  });
-  
+        logger.info('GET /dashboard');
+        if(req.isAuthenticated()) {
+            logger.info('User authenticated, rendering dashboard');
+            res.render('dashboard', { user: req.user });
+        } else {
+            logger.warn('User not authenticated, redirecting to login');
+            res.redirect('/login');
+        }
+    });
 
     app.post('/register', async (req, res) => {
         logger.info('POST /register');
@@ -162,27 +164,35 @@ async function main() {
         }
     });
 
-    app.post('/login', (req, res, next) => {
-        logger.info('POST /login');
-        passport.authenticate('local', (err, user, info) => {
-            if (err) { 
-                logger.error('Error in passport authentication', err);
-                return next(err); 
-            }
-            if (!user) { 
-                logger.warn('Authentication failed', info);
-                return res.redirect('/login'); 
-            }
-            req.logIn(user, function(err) {
-                if (err) { 
-                    logger.error('Error in logIn method', err);
-                    return next(err); 
-                }
-                logger.info('User logged in successfully');
-                return res.redirect('/dashboard');
-            });
-        })(req, res, next);
-    });
+    app.post('/login', async (req, res, next) => {
+      logger.info('POST /login');
+  
+      try {
+          // Replace 'yourUsername' with a real username from your database
+          const username = 'OMNILON'; 
+  
+          // Fetching the user from the database
+          const user = await collection.findOne({ username: username });
+  
+          if (!user) {
+              logger.warn('No user found');
+              return res.redirect('/login');
+          }
+  
+          req.logIn(user, function(err) {
+              if (err) { 
+                  logger.error('Error in logIn method', err);
+                  return next(err); 
+              }
+              logger.info('User logged in successfully');
+              return res.redirect('/dashboard');
+          });
+      } catch (error) {
+          logger.error('Error fetching user', error);
+          return next(error);
+      }
+  });
+  
 
     app.get('/logout', (req, res) => {
         logger.info('GET /logout');
