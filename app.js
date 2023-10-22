@@ -104,19 +104,21 @@ async function main() {
     });
 
     passport.deserializeUser((id, done) => {
-      logger.info('Deserializing user');
+      logger.info(`Deserializing user with id: ${id}`);
       collection.findOne({ _id: new ObjectId(id) }, (err, user) => {
           if (err) {
               logger.error('Error in deserializeUser', err);
-              return done(err, null); // Explicitly pass null as the user when there's an error
+              return done(err, null);
           }
           if (!user) {
-              logger.error('No user found during deserialization');
-              return done(null, false); // No user found, you might want to handle this case as well
+              logger.error(`No user found with id: ${id}`);
+              return done(null, false);
           }
-          return done(null, user); // No error, proceed with the found user
+          logger.info(`User deserialized: ${user.username}`);
+          return done(null, user);
       });
   });
+  
   
 
     // Define your routes here
