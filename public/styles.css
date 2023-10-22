@@ -32,8 +32,9 @@ body, html {
 }
 
 .container {
-    width: 80%; /* Adjust to control the width of the container as a percentage of the viewport width */
-    max-width: 600px; /* This was the original value, adjust or remove as needed */
+    width: 80%; /* or any specific percentage you prefer */
+    min-width: 600px; /* ensures that the container takes up at least this much space */
+    max-width: 600px; /* optional: you can set this to ensure the containers don't get too wide on larger screens */
     padding: 20px;
     border-radius: 15px;
     background: rgba(255, 255, 255, 0.8);
@@ -42,6 +43,7 @@ body, html {
     text-align: left;
     margin-bottom: 20px; /* Space between containers */
 }
+
 h2, h3 {
     color: #FF6B6B;
     margin-bottom: 20px;
