@@ -25,9 +25,13 @@ body, html {
 
 
 .slynd-tagline {
+    font-family: 'Courier New', monospace;
+    font-weight: lighter; /* Makes the font appear lighter/thinner */
+    color: #d41961; /* Salmon pink color */
     font-size: 1.2em;
     margin-top: 0.25em;
-    margin-bottom: 20px; /* Increased space between tagline and container */
+    margin-bottom: 20px;
+    font-style: italic; /* Italicizes the font */
 }
 
 .container {
