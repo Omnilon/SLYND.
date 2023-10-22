@@ -647,3 +647,46 @@
 {"level":"info","message":"GET /register","service":"user-service"}
 {"level":"info","message":"Request received: GET /login","service":"user-service"}
 {"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Starting application","service":"user-service"}
+{"level":"info","message":"Connected to MongoDB","service":"user-service"}
+{"level":"info","message":"Server is running on port 3000","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
+{"level":"info","message":"Request received: GET /login","service":"user-service"}
+{"level":"info","message":"GET /login","service":"user-service"}
+{"level":"info","message":"Request received: GET /register","service":"user-service"}
+{"level":"info","message":"GET /register","service":"user-service"}
