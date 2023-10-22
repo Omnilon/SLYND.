@@ -140,15 +140,10 @@ async function main() {
     });
 
     app.get('/dashboard', (req, res) => {
-        logger.info('GET /dashboard');
-        if(req.isAuthenticated()) {
-            logger.info('User authenticated, rendering dashboard');
-            res.render('dashboard', { user: req.user });
-        } else {
-            logger.warn('User not authenticated, redirecting to login');
-            res.redirect('/login');
-        }
-    });
+      logger.info('GET /dashboard');
+      res.send('Dashboard route reached');
+  });
+  
 
     app.post('/register', async (req, res) => {
         logger.info('POST /register');
