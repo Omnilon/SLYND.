@@ -25,6 +25,7 @@ const logger = winston.createLogger({
 if (process.env.NODE_ENV !== 'production') {
   logger.add(new winston.transports.Console({
     format: winston.format.simple(),
+    
   }));
 }
 
@@ -185,12 +186,18 @@ async function main() {
     });
 
     app.use((err, req, res, next) => {
+      // Log the error
       logger.error(`${err.status || 500} - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
+    
+      // Set locals, only providing error in development
       res.locals.message = err.message;
       res.locals.error = req.app.get('env') === 'development' ? err : {};
+    
+      // Set the status and render the error page
       res.status(err.status || 500);
-      res.render('error');
+      res.render('error', { env: process.env.NODE_ENV }); // pass the environment to the EJS template
     });
+    
 
     const PORT = process.env.PORT || 3000;
     const server = app.listen(PORT, () => {
