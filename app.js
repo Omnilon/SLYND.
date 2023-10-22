@@ -73,12 +73,12 @@ async function main() {
     app.use(passport.initialize());
     app.use(passport.session());
 
-    passport.use(new LocalStrategy({ usernameField: 'email' }, async (email, password, done) => {
+    passport.use(new LocalStrategy({ usernameField: 'username' }, async (username, password, done) => {
       try {
-        const user = await collection.findOne({ email: email });
+        const user = await collection.findOne({ username: username });
         if (!user || !(await bcrypt.compare(password, user.password))) {
-          logger.warn('Authentication failed: Incorrect email or password');
-          return done(null, false, { message: 'Incorrect email or password.' });
+          logger.warn('Authentication failed: Incorrect username or password');
+          return done(null, false, { message: 'Incorrect username or password.' });
         }
         logger.info('Authentication successful');
         return done(null, user);
