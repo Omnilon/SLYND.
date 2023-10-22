@@ -1,87 +1,99 @@
-body { 
-    font-family: 'Arial', sans-serif; 
-    background-color: #FFD6E8; 
-    color: #333; 
-    background-image: linear-gradient(45deg, rgba(255,182,193,0.7), rgba(255,223,186,0.7), rgba(255,255,224,0.7)); 
-    /* Added styles for full background coverage */
+body, html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+    background-color: #FFD6E8;
+    color: #333;
+    background-image: linear-gradient(45deg, rgba(255,182,193,0.7), rgba(255,223,186,0.7), rgba(255,255,224,0.7));
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
 }
 
-.container { 
-    max-width: 600px; 
-    margin: auto; 
-    padding: 20px; 
-    border-radius: 15px; 
-    background: rgba(255, 255, 255, 0.8); 
-    box-shadow: 0 0 10px rgba(0,0,0,0.1); 
-    border: 2px solid #FF69B4; 
-    /* Added text alignment */
-    text-align: center;
+.slynd-header {
+    font-family: 'Courier New', Courier, monospace;
+    color: #FF6B6B;
+    font-size: 4em;
+    font-weight: bold;
+    margin-bottom: 0;
 }
 
-h2, h3 { 
-    color: #FF6B6B; 
-    /* Added text styles */
+.slynd-tagline {
+    font-size: 1.2em;
+    margin-top: 0.25em;
+}
+
+.container {
+    max-width: 600px;
+    width: 100%;
+    padding: 20px;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border: 2px solid #FF69B4;
+    text-align: left;
+}
+
+h2, h3 {
+    color: #FF6B6B;
     margin-bottom: 20px;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
 
-#user-info strong { 
-    color: #FFB677; 
-    /* Added text shadow for emphasis */
+#user-info strong {
+    color: #FFB677;
     text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
 }
 
-button { 
-    width: calc(100% - 20px); 
-    padding: 10px; 
-    border-radius: 5px; 
-    border: none; 
-    color: white; 
-    background-color: #FFB677; 
-    cursor: pointer; 
-    /* Added box shadow and transition for interactive effect */
+button {
+    width: calc(100% - 20px);
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    background-color: #FFB677;
+    cursor: pointer;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     transition: all 0.3s ease;
 }
 
-button:hover { 
-    background-color: #FF6B6B; 
-    /* Added scale effect on hover */
+button:hover {
+    background-color: #FF6B6B;
     transform: scale(1.05);
 }
 
-a, .footer button { 
-    color: #FFB677; 
-    /* Added transition for smooth color change */
+a, .footer button {
+    color: #FFB677;
     transition: color 0.3s ease;
 }
 
-.footer { 
-    margin-top: 20px; 
-    text-align: center; 
+.footer {
+    margin-top: 20px;
+    text-align: center;
 }
 
-.footer button { 
-    background: none; 
-    padding: 0; 
-    border: none; 
-    cursor: pointer; 
+.footer button {
+    background: none;
+    padding: 0;
+    border: none;
+    cursor: pointer;
 }
 
-.footer button:hover { 
-    text-decoration: underline; 
+.footer button:hover {
+    text-decoration: underline;
 }
 
-/* Added styles for input fields */
 input[type='text'], input[type='email'], input[type='password'] {
     width: calc(100% - 20px);
     padding: 10px;
-    margin-bottom: 20px; /* space between inputs */
+    margin-bottom: 20px;
     border-radius: 5px;
     border: 1px solid #FFB677;
     transition: border 0.3s ease;
@@ -92,7 +104,6 @@ input[type='text']:focus, input[type='email']:focus, input[type='password']:focu
     outline: none;
 }
 
-/* Link hover effect */
 a:hover {
     color: #FF6B6B;
 }
