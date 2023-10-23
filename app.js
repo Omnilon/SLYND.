@@ -114,11 +114,11 @@ async function main() {
     passport.deserializeUser((id, done) => {
         usersCollection.findOne({ _id: new ObjectId(id) }, (err, user) => {
           if (err) {
-              console.error('Deserialization error:', err);
+              logger.error('Deserialization error:', err);
               return done(err);
           }
           if (!user) {
-              console.error('User not found during deserialization');
+              logger.error('User not found during deserialization');
               return done(null, false);
           }
           return done(null, user);
@@ -280,5 +280,5 @@ app.use((err, req, res, next) => {
   }
 }
 
-main().catch(console.error);
+main().catch(logger.error);
 
