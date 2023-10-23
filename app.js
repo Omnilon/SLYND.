@@ -52,7 +52,6 @@ async function main() {
   });
 
   // Routes: simplified for brevity
-  app.get('/', (req, res) => res.render('register'));
 
   app.get('/register', (req, res) => {
     logger.info('GET /register');
