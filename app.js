@@ -111,9 +111,9 @@ async function main() {
       done(null, user._id);
     });
 
-    passport.deserializeUser((id, done) => {
+    passport.deserializeUser(( id, done) => {
       logger.info(`Attempting to fetch user with id: ${id}`);
-      collection.findOne({ _id: new ObjectId(id) }, (err, user) => {
+      usersCollection.findOne({ _id: new ObjectId(id) }, (err, user) => {
           if (err) {
               logger.error('Error fetching user during deserialization', err);
               return done(err, null);
