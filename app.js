@@ -113,7 +113,7 @@ async function main() {
     });
 
 passport.deserializeUser((id, done) => {
-  usersCollection.findOne({ _id: new ObjectID(id) }, (err, user) => {
+  usersCollection.findOne({ _id: new ObjectId(id) }, (err, user) => {
      done(null, user);
   });
 });
