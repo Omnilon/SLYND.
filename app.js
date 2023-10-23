@@ -23,7 +23,7 @@ async function main() {
   app.use(express.urlencoded({ extended: false }));
 
   const sessionStore = MongoStore.create({ client: client, dbName: 'SLYND', collectionName: 'sessions' });
-  app.use(sessionStore({
+  app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
@@ -74,7 +74,7 @@ async function main() {
 
   app.get('/dashboard', (req, res) => {
     if(req.isAuthenticated()) {
-      res.render('dashboard', { user: req.user });
+      res.send('user is authorized', { user: req.user });
     } else {
       res.redirect('/login');
     }
