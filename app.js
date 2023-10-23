@@ -54,6 +54,12 @@ async function main() {
   // Routes: simplified for brevity
   app.get('/', (req, res) => res.render('register'));
 
+  app.get('/register', (req, res) => {
+    logger.info('GET /register');
+    res.render('register'); // Make sure 'register.ejs' exists in your 'views' directory
+});
+
+
   app.get('/dashboard', (req, res) => {
     if(req.isAuthenticated()) {
       res.render('dashboard', { user: req.user });
