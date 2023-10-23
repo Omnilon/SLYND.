@@ -23,7 +23,7 @@ async function main() {
   app.use(express.urlencoded({ extended: false }));
 
   const sessionStore = MongoStore.create({ client: client, dbName: 'SLYND', collectionName: 'sessions' });
-  app.use(session({
+  app.use(sessionStore({
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
