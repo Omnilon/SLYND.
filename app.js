@@ -1,7 +1,7 @@
 require('dotenv').config();
 
-const express = require('express');
 const helmet = require('helmet');
+const express = require('express');
 const path = require('path');
 const { MongoClient, ObjectId } = require('mongodb');
 const session = require('express-session');
@@ -43,7 +43,7 @@ async function main() {
     await client.connect();
     logger.info('Connected to MongoDB');
     const db = client.db(dbName);
-    const usersCollection = db.collection('users');
+    const collection = db.collection('registration');
 
     const app = express();
 
@@ -67,13 +67,12 @@ async function main() {
 
     app.use(session({
       secret: process.env.SESSION_SECRET,
-      resave: false,
-      saveUninitialized: true,
+      resave: true,
+      saveUninitialized: false,
       store: sessionStore,
       cookie: {
         secure: false,
         httpOnly: true,
-        sameSite: 'lax',
         maxAge: 14 * 24 * 60 * 60 * 1000,
       }
     }));
@@ -81,10 +80,9 @@ async function main() {
     app.use(passport.initialize());
     app.use(passport.session());
 
-    passport.use(new LocalStrategy({ usernameField: 'username' }, 
-    async (username, password, done) => {
+    passport.use(new LocalStrategy({ usernameField: 'username' }, async (username, password, done) => {
       try {
-        const user = await usersCollection.findOne({ username: username });
+        const user = await collection.findOne({ username: username });
         if (!user || !(await bcrypt.compare(password, user.password))) {
           logger.warn('Authentication failed: Incorrect username or password');
           return done(null, false, { message: 'Incorrect username or password.' });
@@ -113,8 +111,18 @@ async function main() {
     });
 
 passport.deserializeUser((id, done) => {
-  usersCollection.findOne({ _id: new ObjectID(id) }, (err, user) => {
-     done(null, user);
+  logger.info(`Attempting to fetch user with id: ${id}`);
+  collection.findOne({ _id: new ObjectId(id) }, (err, user) => {
+      if (err) {
+          logger.error('Error fetching user during deserialization', err);
+          return done(err, null);
+      }
+      if (!user) {
+          logger.error(`No user found with id: ${id}`);
+          return done(null, false);
+      }
+      logger.info(`User fetched and deserialized: ${user.username}`);
+      return done(null, user);
   });
 });
 
@@ -143,9 +151,17 @@ app.use((req, res, next) => {
 
     // Define your routes here
 
-    app.get('/', (req, res) => res.render('register'));
+    app.get('/', (req, res) => {
+      logger.info('GET /');
+      res.render('dashboard');
+    });
+    
 
-  
+    app.get('/login', (req, res) => { 
+        logger.info('GET /login');
+        res.render('login'); 
+    });
+
     app.get('/register', (req, res) => {
         logger.info('GET /register');
         res.render('register'); 
@@ -167,21 +183,13 @@ app.use((req, res, next) => {
         try {
             const hashedPassword = await bcrypt.hash(req.body.password, 10);
             const user = { username: req.body.username, email: req.body.email, password: hashedPassword };
-            await usersCollection.insertOne(user);
+            await collection.insertOne(user);
             logger.info('User registered successfully');
             res.redirect('/login');
         } catch (error) {
             logger.error('Registration error', error);
             res.redirect('/register');
         }
-    });
-
-    app.get('/login', (req, res) => {
-      if(req.isAuthenticated()) {
-        res.render('dashboard');
-      } else {
-        res.render('login');
-      }
     });
 
     app.post('/login', (req, res, next) => {
@@ -273,4 +281,5 @@ app.use((err, req, res, next) => {
 }
 
 main().catch(console.error);
+
 
