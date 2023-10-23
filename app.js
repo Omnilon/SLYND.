@@ -95,7 +95,7 @@ async function main() {
   // Login routes
   app.get('/login', (req, res) => {
     if(req.isAuthenticated()) {
-      res.send('user is authorized');
+      res.render('dashboard');
     } else {
       res.render('login');
     }
