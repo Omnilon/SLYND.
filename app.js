@@ -10,6 +10,7 @@ const bcrypt = require('bcrypt');
 const LocalStrategy = require('passport-local').Strategy;
 const MongoStore = require('connect-mongo');
 
+
 const winston = require('winston');
 
 const logger = winston.createLogger({
@@ -53,25 +54,34 @@ async function main() {
     app.use(express.static(path.join(__dirname, 'public')));
     app.use(express.urlencoded({ extended: false }));
     app.use(helmet());
+
+    const sessionStore = MongoStore.create({
+      client: client, // your MongoDB client
+      dbName: dbName, // the name of your database
+      collectionName: 'sessions', // the collection where sessions are stored
+      // ... any other options ...
+    });
+
+    sessionStore.on('error', function(error) {
+      logger.error('Session store error', error); // using logger for consistency
+    });
+
+
     app.use(session({
       secret: process.env.SESSION_SECRET,
       resave: false,
       saveUninitialized: true,
-      store: MongoStore.create({
-        client: client,
-        dbName: dbName,
-        collectionName: 'sessions',
-        ttl: 14 * 24 * 60 * 60,
-        autoRemove: 'native',
-      }),
+      store: sessionStore,
       cookie: {
         secure: false,
         httpOnly: true,
         maxAge: 14 * 24 * 60 * 60 * 1000,
       }
     }));
+
     app.use(passport.initialize());
     app.use(passport.session());
+
 
     passport.use(new LocalStrategy({ usernameField: 'username' }, async (username, password, done) => {
       try {
@@ -103,21 +113,29 @@ async function main() {
       done(null, user._id);
     });
 
-    passport.deserializeUser((id, done) => {
-      logger.info(`Deserializing user with id: ${id}`);
-      collection.findOne({ _id: new ObjectId(id) }, (err, user) => {
-          if (err) {
-              logger.error('Error in deserializeUser', err);
-              return done(err, null);
-          }
-          if (!user) {
-              logger.error(`No user found with id: ${id}`);
-              return done(null, false);
-          }
-          logger.info(`User deserialized: ${user.username}`);
-          return done(null, user);
-      });
+passport.deserializeUser((id, done) => {
+  logger.info(`Attempting to fetch user with id: ${id}`);
+  collection.findOne({ _id: new ObjectId(id) }, (err, user) => {
+      if (err) {
+          logger.error('Error fetching user during deserialization', err);
+          return done(err, null);
+      }
+      if (!user) {
+          logger.error(`No user found with id: ${id}`);
+          return done(null, false);
+      }
+      logger.info(`User fetched and deserialized: ${user.username}`);
+      return done(null, user);
   });
+});
+
+app.use((req, res, next) => {
+  logger.info('Session ID:', req.sessionID); // Log session ID
+  logger.info('Session:', req.session); // Log session data
+  next();
+});
+
+
   
   // Existing middlewares like helmet, express.static, etc.
 
