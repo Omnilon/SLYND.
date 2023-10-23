@@ -157,7 +157,7 @@ app.use((req, res, next) => {
 
     app.get('/', (req, res) => {
       logger.info('GET /');
-      res.render('login');
+      res.render('dashboard');
     });
     
 
