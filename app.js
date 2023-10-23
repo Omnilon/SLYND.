@@ -1,123 +1,217 @@
 require('dotenv').config();
+
+const helmet = require('helmet');
 const express = require('express');
 const path = require('path');
-const { MongoClient } = require('mongodb');
+const { MongoClient, ObjectId } = require('mongodb');
 const session = require('express-session');
 const passport = require('passport');
 const bcrypt = require('bcrypt');
 const LocalStrategy = require('passport-local').Strategy;
 const MongoStore = require('connect-mongo');
 
-const uri = process.env.MONGO_URI;
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+const winston = require('winston');
 
-async function main() {
-  await client.connect();
-  const db = client.db('SLYND');
-  const usersCollection = db.collection('users');
+const logger = winston.createLogger({
+  level: 'info', // Log only if info level or higher
+  format: winston.format.json(), // Log format
+  defaultMeta: { service: 'user-service' }, // Optional metadata
+  transports: [
+    // - Write all logs error (and below) to `error.log`.
+    new winston.transports.File({ filename: 'error.log', level: 'error' }),
+    // - Write all logs to `combined.log`.
+    new winston.transports.File({ filename: 'combined.log' }),
+  ],
+});
 
-  const app = express();
-  app.set('view engine', 'ejs');
-  app.set('views', path.join(__dirname, 'views'));
-  app.use(express.static(path.join(__dirname, 'public')));
-  app.use(express.urlencoded({ extended: false }));
-
-  const sessionStore = MongoStore.create({ client: client, dbName: 'SLYND', collectionName: 'sessions' });
-  app.use(session({
-    secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: true,
-    store: sessionStore,
-    // cookie http samesite maxage added
-    cookie: { secure: false , 
-      httpOnly: true, // recommended, prevents client-side JS from reading the cookie
-      sameSite: 'lax', // can be 'lax' or 'strict', 'lax' is recommended
-      maxAge: 24 * 60 * 60 * 1000 // cookie expiration time, e.g., 1 day
-    }
+// If we're not in production, log to the `console` with the format:
+// `${info.level}: ${info.message} JSON.stringify({ ...rest }) `
+if (process.env.NODE_ENV !== 'production') {
+  logger.add(new winston.transports.Console({
+    format: winston.format.simple(),
   }));
+}
 
-  app.use(passport.initialize());
-  app.use(passport.session());
-//passport change
-  passport.use(new LocalStrategy(
-    async (username, password, done) => {
-      try {
-        const user = await usersCollection.findOne({ username : username });
-        if (user && await bcrypt.compare(password, user.password)) {
-          return done(null, user);
-        } else {
-          return done(null, false, { message: 'Incorrect credentials' });
-        }
-      } catch (error) {
-        return done(error);
-      }
-    }
-  ));
-//deserializer change
-  passport.serializeUser(function(user, done) {
-    done(null, user._id);
-  });
+logger.info('Hello, Winston!');
 
-  passport.deserializeUser((id, done) => {
-    usersCollection.findOne({ _id: new ObjectID(id) }, (err, user) => {
-      done(err, user);
-    });
-  });
+const uri = process.env.MONGO_URI;
+const dbName = 'SLYND';
 
-  // Routes: simplified for brevity
-  app.get('/', (req, res) => res.render('register'));
 
-  app.get('/register', (req, res) => {
-    res.render('register'); // Make sure 'register.ejs' exists in your 'views' directory
+
+const client = new MongoClient(uri, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
 });
 
 
+
+async function main() {
+  try {
+    await client.connect();
+    console.log('Connected to MongoDB');
+    const db = client.db(dbName);
+    const collection = db.collection('registration');
+
+
+
+    const app = express();
+
+    app.set('view engine', 'ejs');
+    app.set('views', path.join(__dirname, 'views')); // Assuming your EJS templates are in a "views" directory in your project root
+   
+
+    app.use(express.static(path.join(__dirname, 'public')));
+
+    app.use(express.urlencoded({ extended: false }));
+
+    app.use(helmet());
+    app.use(session({
+        secret: process.env.SESSION_SECRET,
+        resave: false,
+        saveUninitialized: true,
+        store: MongoStore.create({
+          client: client, // using the existing MongoDB client
+          dbName: dbName, // the name of the database to store sessions
+          collectionName: 'sessions', // the name of the collection to store sessions
+          ttl: 14 * 24 * 60 * 60, // = 14 days. Default
+          autoRemove: 'native', // Default
+        }),
+        cookie: {
+            secure: false, // Set to true only in production
+          httpOnly: true,
+          maxAge: 14 * 24 * 60 * 60 * 1000, // = 14 days
+        }
+      }));  
+    app.use(passport.initialize());
+    app.use(passport.session());
+     
+    passport.use(new LocalStrategy({ usernameField: 'email' }, async (email, password, done) => {
+      try {                              
+        const user = await collection.findOne({ email: email });
+        if (!user || !(await bcrypt.compare(password, user.password))) {
+          return done(null, false, { message: 'Incorrect email or password.' });
+        }
+        return done(null, user);
+      } catch (e) {
+        return done(e);
+      }
+    }));
+
+    app.use(require('connect-flash')());
+    app.use((req, res, next) => {
+        logger.info(`${req.method} ${req.url}`);
+        next();
+      });
+    app.use((req, res, next) => {
+        res.locals.messages = req.flash();
+        next();
+      });
+      
+    passport.serializeUser((user, done) => done(null, user._id));
+    passport.deserializeUser((id, done) => {
+    collection.findOne({ _id: new ObjectId(id) }, (err, user) => 
+    done(err, user));
+    });
+   
+
+    app.get('/login', (req, res) => { 
+    res.render('login'); });
+
+    app.get('/register', (req, res) => {
+       res.render('register'); });
+
   app.get('/dashboard', (req, res) => {
     if(req.isAuthenticated()) {
-      res.render('dashboard', { user: req.user });
+        res.render('dashboard', { user: req.user });
     } else {
-      res.redirect('/login');
+        res.redirect('/login');
     }
-  });
+});
 
   app.post('/register', async (req, res) => {
     try {
       const hashedPassword = await bcrypt.hash(req.body.password, 10);
       const user = { username: req.body.username, email: req.body.email, password: hashedPassword };
-      await usersCollection.insertOne(user);
+      await collection.insertOne(user);
       res.redirect('/login');
     } catch (error) {
-      console.error('Registration error', error);
+      console.error(error);
       res.redirect('/register');
     }
   });
-  
-  // Login routes
-  app.get('/login', (req, res) => {
-    if(req.isAuthenticated()) {
-      res.render('dashboard');
-    } else {
-      res.render('login');
-    }
-  });
-  //auto passport change
+
   app.post('/login', passport.authenticate('local', {
     successRedirect: '/dashboard',
     failureRedirect: '/login',
+    failureFlash: 'Invalid username or password.',
+successFlash: 'Welcome!'
 }));
 
-  
-  
-  // Logout route
-  app.get('/logout', (req, res) => {
-    req.logout();
-    res.redirect('/login');
+app.get('/logout', (req, res) => {
+  req.logout();
+  res.redirect('/login');
+});
+
+// Catch 404 and forward to error handler
+app.use((req, res, next) => {
+    const err = new Error('Not Found');
+    err.status = 404;
+    next(err);
   });
+ 
+  // Error handler
+  app.use((err, req, res, next) => {
+    // Log the error
+    logger.error(`${err.status || 500} - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
+ 
+    // Set locals, only providing error in development
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
+ 
+    // Render the error page
+    res.status(err.status || 500);
+    res.render('error', { env: req.app.get('env') }); // pass the environment to the EJS template
+  });
+ 
 
-  // ... other routes ...
+  process.on('unhandledRejection', (reason, promise) => {
+    console.error('Unhandled Rejection at:', promise, 'reason:', reason);
+    // Application specific logging, throwing an error, or other logic here
+  });
+ 
 
-  const PORT = process.env.PORT || 3000;
-  app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+   const PORT = process.env.PORT || 3000;
+    const server = app.listen(PORT, () => {
+      console.log(`Server is running on port ${PORT}`);
+    });
+
+  // Graceful shutdown logic
+    function gracefulShutdown() {
+      console.log('Shutting down gracefully...');
+      server.close(() => {
+        console.log('Closed out remaining connections.');
+        client.close(false, () => {
+          console.log('MongoDB connection closed.');
+          process.exit(0);
+        });
+      });
+    }
+
+
+
+    process.on('SIGTERM', gracefulShutdown);
+    process.on('SIGINT', gracefulShutdown);
+
+
+
+  } catch (err) {
+    console.error('Error connecting to MongoDB', err);
+    process.exit(1);
+  }
 }
 
+
+
 main().catch(console.error);
+
