@@ -129,11 +129,8 @@ passport.deserializeUser((id, done) => {
   });
 });
 
-app.use((req, res, next) => {
-  logger.info('Session ID:', req.sessionID); // Log session ID
-  logger.info('Session:', req.session); // Log session data
-  next();
-});
+logger.info(`Session ID: ${req.sessionID}`);
+
 
 
   
