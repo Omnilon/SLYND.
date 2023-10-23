@@ -100,17 +100,12 @@ async function main() {
       res.render('login');
     }
   });
-  //manual passport change
-  app.post('/login', (req, res, next) => {
-    passport.authenticate('local', (err, user, info) => {
-      if (err) { return next(err); }
-      if (!user) { return res.redirect('/login'); }
-      req.login(user, (err) => {
-        if (err) { return next(err); }
-        return res.redirect('/dashboard');
-      });
-    })(req, res, next);
-  });
+  //auto passport change
+  app.post('/login', passport.authenticate('local', {
+    successRedirect: '/dashboard',
+    failureRedirect: '/login',
+}));
+
   
   
   // Logout route
