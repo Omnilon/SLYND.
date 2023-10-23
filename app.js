@@ -224,7 +224,7 @@ app.use((req, res, next) => {
         logger.info('GET /logout');
         req.logout();
         logger.info('User logged out successfully');
-        res.redirect('/');
+        res.redirect('/login');
     });
 
    // Error handlers
