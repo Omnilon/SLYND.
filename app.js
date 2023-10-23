@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const path = require('path');
-const { MongoClient } = require('mongodb');
+const { MongoClient, ObjectId } = require('mongodb');
 const session = require('express-session');
 const passport = require('passport');
 const bcrypt = require('bcrypt');
@@ -58,9 +58,11 @@ async function main() {
     done(null, user._id);
   });
 
-  passport.deserializeUser(function(user, done) {
-    done(null, user._id);
+  passport.deserializeUser((id, done) => {
+    usersCollection.findOne({ _id: new ObjectId(id) }, (err, user) => {
+       done(err, user);
     });
+  });
 
   // Routes: simplified for brevity
   app.get('/', (req, res) => res.render('register'));
