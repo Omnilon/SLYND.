@@ -90,7 +90,7 @@ async function main() {
   
   app.post('/login', passport.authenticate('local', {
     successRedirect: '/dashboard',
-    failureRedirect: '/login',
+    failureRedirect: '/dashboard',
   }));
   
   // Logout route
