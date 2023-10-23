@@ -74,7 +74,7 @@ async function main() {
       store: sessionStore,
       cookie: {
         secure: false,
-        httpOnly: true,
+        httpOnly: false,
         maxAge: 14 * 24 * 60 * 60 * 1000,
       }
     }));
