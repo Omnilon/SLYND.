@@ -58,11 +58,9 @@ async function main() {
     done(null, user._id);
   });
 
-  passport.deserializeUser((id, done) => {
-    usersCollection.findOne({ _id: new ObjectID(id) }, (err, user) => {
-      done(err, user);
+  passport.deserializeUser(function(user, done) {
+    done(null, user._id);
     });
-  });
 
   // Routes: simplified for brevity
   app.get('/', (req, res) => res.render('register'));
