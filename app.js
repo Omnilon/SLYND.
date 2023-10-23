@@ -3,13 +3,12 @@ require('dotenv').config();
 const express = require('express');
 const helmet = require('helmet');
 const path = require('path');
-const { MongoClient} = require('mongodb');
+const { MongoClient , ObjectId} = require('mongodb');
 const session = require('express-session');
 const passport = require('passport');
 const bcrypt = require('bcrypt');
 const LocalStrategy = require('passport-local').Strategy;
 const MongoStore = require('connect-mongo');
-const { ObjectId } = require('mongodb');
 const winston = require('winston');
 
 const logger = winston.createLogger({
@@ -113,10 +112,6 @@ async function main() {
     });
 
     passport.deserializeUser((id, done) => {
-      if (!ObjectId.isValid(id)) {
-        console.error('Invalid ObjectId:', id);
-        return done(null, false);
-    }
         usersCollection.findOne({ _id: new ObjectId(id) }, (err, user) => {
           if (err) {
               console.error('Deserialization error:', err);
