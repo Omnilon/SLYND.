@@ -112,18 +112,21 @@ async function main() {
     });
 
     passport.deserializeUser((id, done) => {
-        usersCollection.findOne({ _id: new ObjectId(id) }, (err, user) => {
+      logger.info(`Attempting to fetch user with id: ${id}`);
+      collection.findOne({ _id: new ObjectId(id) }, (err, user) => {
           if (err) {
-              logger.error('Deserialization error:', err);
-              return done(err);
+              logger.error('Error fetching user during deserialization', err);
+              return done(err, null);
           }
           if (!user) {
-              logger.error('User not found during deserialization');
+              logger.error(`No user found with id: ${id}`);
               return done(null, false);
           }
+          logger.info(`User fetched and deserialized: ${user.username}`);
           return done(null, user);
       });
-  });
+    });
+    
   
 
 app.use((req, res, next) => {
