@@ -69,7 +69,7 @@ async function main() {
 
     app.use(session({
       secret: process.env.SESSION_SECRET,
-      resave: false,
+      resave: true,
       saveUninitialized: true,
       store: sessionStore,
       cookie: {
