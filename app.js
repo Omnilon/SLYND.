@@ -70,7 +70,7 @@ async function main() {
     app.use(session({
       secret: process.env.SESSION_SECRET,
       resave: true,
-      saveUninitialized: true,
+      saveUninitialized: false,
       store: sessionStore,
       cookie: {
         secure: false,
@@ -131,12 +131,9 @@ passport.deserializeUser((id, done) => {
 
 app.use((req, res, next) => {
   logger.info(`Session ID: ${req.sessionID}`);
-
   next();
 });
 
-
-  
   // Existing middlewares like helmet, express.static, etc.
 
 app.use((req, res, next) => {
