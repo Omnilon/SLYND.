@@ -74,7 +74,7 @@ async function main() {
 
   app.get('/dashboard', (req, res) => {
     if(req.isAuthenticated()) {
-      res.send('user is authorized', { user: req.user });
+      res.render('dashboard', { user: req.user });
     } else {
       res.redirect('/login');
     }
@@ -95,7 +95,7 @@ async function main() {
   // Login routes
   app.get('/login', (req, res) => {
     if(req.isAuthenticated()) {
-      res.redirect('/dashboard');
+      res.send('user is authorized');
     } else {
       res.render('login');
     }
