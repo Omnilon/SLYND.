@@ -37,12 +37,14 @@ const client = new MongoClient(uri, {
   useUnifiedTopology: true,
 });
 
+let usersCollection;
+
 async function main() {
   try {
     await client.connect();
     logger.info('Connected to MongoDB');
     const db = client.db(dbName);
-    const usersCollection = db.collection('users');
+    usersCollection = db.collection('users');
 
     const app = express();
 
