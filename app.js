@@ -73,7 +73,7 @@ async function main() {
       saveUninitialized: false,
       store: sessionStore,
       cookie: {
-        secure: false,
+        secure: true,
         httpOnly: true,
         maxAge: 14 * 24 * 60 * 60 * 1000,
       }
@@ -157,7 +157,7 @@ app.use((req, res, next) => {
 
     app.get('/', (req, res) => {
       logger.info('GET /');
-      res.render('register');
+      res.render('login');
     });
     
 
