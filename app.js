@@ -100,6 +100,37 @@ async function main() {
     res.redirect('/login');
   });
 
+     // Error handlers
+app.use((req, res, next) => {
+  const err = new Error('Not Found');
+  err.status = 404;
+  next(err);
+});
+
+app.use((err, req, res, next) => {
+  // Log the error details
+  logger.error({
+    message: err.message,
+    error: err, // Logging the stack trace
+    level: 'error', // Explicitly setting the level if not set by default
+    timestamp: new Date().toISOString(), // Adding timestamp if not added by default
+    path: req.originalUrl, // The URL that generated the error
+    method: req.method, // The HTTP method used for the request
+    ip: req.ip, // The IP address of the requestor
+    ...(req.user && { user: req.user.username }), // The username if available and authenticated
+  });
+
+  // Set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+  // Set the status and render the error page
+  res.status(err.status || 500);
+  res.render('error', { env: process.env.NODE_ENV }); // pass the environment to the EJS template
+});
+
+
+
   // ... other routes ...
 
   const PORT = process.env.PORT || 3000;
