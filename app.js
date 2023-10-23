@@ -55,7 +55,7 @@ async function main() {
   app.get('/', (req, res) => res.render('register'));
 
   app.get('/register', (req, res) => {
-    res.render('register'); // Make sure 'register.ejs' exists in your 'views' directory
+    res.send('register'); // Make sure 'register.ejs' exists in your 'views' directory
 });
 
 
