@@ -3,7 +3,7 @@ require('dotenv').config();
 const express = require('express');
 const helmet = require('helmet');
 const path = require('path');
-const { MongoClient, ObjectId } = require('mongodb');
+const { MongoClient} = require('mongodb');
 const session = require('express-session');
 const passport = require('passport');
 const bcrypt = require('bcrypt');
