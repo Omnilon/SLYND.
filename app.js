@@ -73,7 +73,7 @@ async function main() {
       saveUninitialized: false,
       store: sessionStore,
       cookie: {
-        secure: false,
+        secure: true,
         httpOnly: true,
         maxAge: 14 * 24 * 60 * 60 * 1000,
       }
