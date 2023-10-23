@@ -119,7 +119,24 @@ async function main() {
       });
   });
   
-  
+  // Existing middlewares like helmet, express.static, etc.
+
+app.use((req, res, next) => {
+  logger.info(`Request details: ${req.method} ${req.url} Headers: ${JSON.stringify(req.headers)} Body: ${JSON.stringify(req.body)} Session: ${JSON.stringify(req.session)}`);
+  next();
+});
+
+app.use((req, res, next) => {
+  if (req.session) {
+    logger.info(`Session data: ${JSON.stringify(req.session)}`);
+  } else {
+    logger.warn('No session data available');
+  }
+  next();
+});
+
+// Route declarations start here
+
 
     // Define your routes here
 
@@ -140,10 +157,15 @@ async function main() {
     });
 
     app.get('/dashboard', (req, res) => {
-      logger.info('GET /dashboard');
-      res.send('Dashboard route reached');
-  });
-  
+      if(req.isAuthenticated()) {
+        logger.info(`User authenticated, accessing dashboard: ${req.user.username}`);
+        res.render('dashboard', { user: req.user });
+      } else {
+        logger.warn(`User not authenticated, redirecting to login. Session: ${JSON.stringify(req.session)}`);
+        res.redirect('/login');
+      }
+    });
+    
 
     app.post('/register', async (req, res) => {
         logger.info('POST /register');
@@ -160,27 +182,26 @@ async function main() {
     });
 
     app.post('/login', (req, res, next) => {
-        logger.info('POST /login');
-        passport.authenticate('local', (err, user, info) => {
-            if (err) { 
-                logger.error('Error in passport authentication', err);
-                return next(err); 
-            }
-            if (!user) { 
-                logger.warn('Authentication failed', info);
-                return res.redirect('/login'); 
-            }
-            req.logIn(user, function(err) {
-                if (err) { 
-                    logger.error('Error in logIn method', err);
-                    return next(err); 
-                }
-                logger.info('User logged in successfully');
-                return res.redirect('/dashboard');
-            });
-        })(req, res, next);
+      passport.authenticate('local', (err, user, info) => {
+        if (err) { 
+          logger.error(`Authentication error: ${err}`);
+          return next(err); 
+        }
+        if (!user) { 
+          logger.warn(`Authentication failed: ${info.message}`);
+          return res.redirect('/login'); 
+        }
+        req.logIn(user, function(err) {
+          if (err) { 
+            logger.error(`Error in logIn method: ${err}`);
+            return next(err); 
+          }
+          logger.info(`User logged in successfully: ${user.username}`);
+          return res.redirect('/dashboard');
+        });
+      })(req, res, next);
     });
-
+    
     app.get('/logout', (req, res) => {
         logger.info('GET /logout');
         req.logout();
@@ -188,25 +209,35 @@ async function main() {
         res.redirect('/login');
     });
 
-    // Error handlers
-    app.use((req, res, next) => {
-      const err = new Error('Not Found');
-      err.status = 404;
-      next(err);
-    });
+   // Error handlers
+app.use((req, res, next) => {
+  const err = new Error('Not Found');
+  err.status = 404;
+  next(err);
+});
 
-    app.use((err, req, res, next) => {
-      // Log the error
-      logger.error(`${err.status || 500} - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
-    
-      // Set locals, only providing error in development
-      res.locals.message = err.message;
-      res.locals.error = req.app.get('env') === 'development' ? err : {};
-    
-      // Set the status and render the error page
-      res.status(err.status || 500);
-      res.render('error', { env: process.env.NODE_ENV }); // pass the environment to the EJS template
-    });
+app.use((err, req, res, next) => {
+  // Log the error details
+  logger.error({
+    message: err.message,
+    error: err, // Logging the stack trace
+    level: 'error', // Explicitly setting the level if not set by default
+    timestamp: new Date().toISOString(), // Adding timestamp if not added by default
+    path: req.originalUrl, // The URL that generated the error
+    method: req.method, // The HTTP method used for the request
+    ip: req.ip, // The IP address of the requestor
+    ...(req.user && { user: req.user.username }), // The username if available and authenticated
+  });
+
+  // Set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+  // Set the status and render the error page
+  res.status(err.status || 500);
+  res.render('error', { env: process.env.NODE_ENV }); // pass the environment to the EJS template
+});
+
     
 
     const PORT = process.env.PORT || 3000;
