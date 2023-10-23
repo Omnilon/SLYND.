@@ -27,26 +27,39 @@ async function main() {
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
-    store: sessionStore
+    store: sessionStore,
+    // cookie http samesite maxage added
+    cookie: { secure: false , 
+      httpOnly: true, // recommended, prevents client-side JS from reading the cookie
+      sameSite: 'lax', // can be 'lax' or 'strict', 'lax' is recommended
+      maxAge: 24 * 60 * 60 * 1000 // cookie expiration time, e.g., 1 day
+    }
   }));
 
   app.use(passport.initialize());
   app.use(passport.session());
-
+//passport change
   passport.use(new LocalStrategy(
     async (username, password, done) => {
-      const user = await usersCollection.findOne({ username });
-      if (user && await bcrypt.compare(password, user.password)) {
-        return done(null, user);
-      } else {
-        return done(null, false, { message: 'Incorrect credentials' });
+      try {
+        const user = await usersCollection.findOne({ username : username });
+        if (user && await bcrypt.compare(password, user.password)) {
+          return done(null, user);
+        } else {
+          return done(null, false, { message: 'Incorrect credentials' });
+        }
+      } catch (error) {
+        return done(error);
       }
     }
   ));
+//deserializer change
+  passport.serializeUser(function(user, done) {
+    done(null, user._id);
+  });
 
-  passport.serializeUser((user, done) => done(null, user._id));
   passport.deserializeUser((id, done) => {
-    usersCollection.findOne({ _id: id }, (err, user) => {
+    usersCollection.findOne({ _id: new ObjectID(id) }, (err, user) => {
       done(err, user);
     });
   });
@@ -87,11 +100,18 @@ async function main() {
       res.render('login');
     }
   });
+  //manual passport change
+  app.post('/login', (req, res, next) => {
+    passport.authenticate('local', (err, user, info) => {
+      if (err) { return next(err); }
+      if (!user) { return res.redirect('/login'); }
+      req.login(user, (err) => {
+        if (err) { return next(err); }
+        return res.redirect('/dashboard');
+      });
+    })(req, res, next);
+  });
   
-  app.post('/login', passport.authenticate('local', {
-    successRedirect: '/dashboard',
-    failureRedirect: '/dashboard',
-  }));
   
   // Logout route
   app.get('/logout', (req, res) => {
