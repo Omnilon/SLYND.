@@ -226,6 +226,14 @@ app.use((req, res, next) => {
         logger.info('User logged out successfully');
         res.redirect('/login');
     });
+    app.post('/logout', (req, res) => {
+      logger.info('POST /logout');
+      req.logout();
+      logger.info('User logged out successfully');
+      res.redirect('/login');
+  });
+  
+   
 
    // Error handlers
 app.use((req, res, next) => {
