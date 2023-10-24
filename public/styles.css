@@ -148,14 +148,15 @@ a:hover {
 #dashboard-container .profile-photo-container {
     position: absolute;
     left: 50%;
-    bottom: -50px; /* Adjust based on the size of the profile photo */
-    transform: translateX(-50%);
+    top: 15%; /* Adjust based on the size of the cover photo and desired overlap */
+    transform: translate(-50%, -50%); /* Centers the image perfectly */
     width: 100px; /* Adjust as needed */
     height: 100px; /* Adjust as needed */
     border-radius: 50%;
     overflow: hidden;
-    border: 3px solid white;
-    background-color: white;
+    border: 3px solid white; /* Optional: for visual effect */
+    background-color: white; /* Optional: in case the image doesn't cover the whole area */
+    z-index: 2; /* Makes sure the profile photo stays on top */
 }
 
 #dashboard-container .profile-photo-container .profile-photo {
