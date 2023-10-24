@@ -189,3 +189,43 @@ a:hover {
     z-index: 3; /* higher than the image layers */
     /* any additional styling and positioning */
 }
+/*--SETTING'S OPTIONS------------------------------------------------------------------*/
+#settings-button {
+    position: absolute;
+    top: 10px; /* adjust as needed */
+    right: 10px; /* adjust as needed */
+    width: 50px; /* adjust as needed */
+    height: 50px; /* adjust as needed */
+    background-color: transparent;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 1000; /* high z-index to ensure it's above other elements */
+}
+
+#settings-console {
+    position: absolute;
+    top: 70px; /* position below the button, adjust as needed */
+    right: 10px;
+    background-color: #ffd1dc; /* pastel pink-orange */
+    border-radius: 15px;
+    padding: 20px;
+    z-index: 999; /* slightly below the button */
+    /* other styling as needed */
+}
+
+#settings-console .menu-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+    /* other styling as needed */
+}
+
+#settings-console .menu-item img {
+    margin-right: 10px; /* space between icon and text */
+}
+
+.hidden {
+    display: none;
+}
+/*--SETTING'S OPTIONS------------------------------------------------------------------*/
