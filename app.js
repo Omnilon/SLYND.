@@ -226,12 +226,20 @@ app.use((req, res, next) => {
         logger.info('User logged out successfully');
         res.redirect('/login');
     });
-    app.post('/logout', (req, res) => {
-      logger.info('POST /logout');
-      req.logout();
-      logger.info('User logged out successfully');
-      res.redirect('/login');
-  });
+    
+    app.post('/logout', function(req, res, next) {
+      req.logout(function(err) {
+        if (err) { 
+          // Log the error or handle it in a way that's appropriate for your application
+          logger.error(`Logout error: ${err}`);
+          return next(err); 
+        }
+        // If there's no error, redirect or handle the successful logout as needed
+        logger.info('User logged out successfully');
+        res.redirect('/login');
+      });
+    });
+    
   
    
 
