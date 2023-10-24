@@ -8,13 +8,40 @@
     <link rel='stylesheet' href='/styles.css'>
 </head>
 <body>
-     <div class='container' id='dashboard-container'>
+    <div class='container' id='dashboard-container'>
         <div class="cover-photo-container">
-                <img src="/public/placeholder.jpg" alt="cover photo" class="cover-photo">
+            <img src="/placeholder.jpg" alt="cover photo" class="cover-photo">
         </div>
-    <div class="profile-photo-container">
-         <img src="/public/placeholder.jpg" alt="profile photo" class="profile-photo">
-    </div>
+        <div class="profile-photo-container">
+            <img src="/placeholder.jpg" alt="profile photo" class="profile-photo">
+        </div>
+        <div id="settings-button">
+            <img src="/path-to-your-icon" alt="Settings" /> <!-- Replace with your icon path -->
+        </div>
+        <div id="settings-console" class="hidden">
+<!--SETTING'S OPTIONS------------------------------------------------------------------>
+            <div class="menu-item">
+                <img src="/path-to-your-icon" alt="Icon" /> <!-- Replace with your icon path -->
+                <span>Settings and Privacy</span>
+            </div>
+            <div class="menu-item">
+                <img src="/path-to-your-icon" alt="Icon" /> <!-- Replace with your icon path -->
+                <span>Theme</span>
+            </div>
+            <div class="menu-item">
+                <img src="/path-to-your-icon" alt="Icon" /> <!-- Replace with your icon path -->
+                <span>Notifications</span>
+            </div>
+            <div class="menu-item">
+                <img src="/path-to-your-icon" alt="Icon" /> <!-- Replace with your icon path -->
+                <span>Help</span>
+            </div>
+            <div class="menu-item">
+                <img src="/path-to-your-icon" alt="Icon" /> <!-- Replace with your icon path -->
+                <span>about</span>
+            </div>
+        </div>
+<!--SETTING'S OPTIONS------------------------------------------------------------------>
         <div id='user-info'>
             <h1><p><strong><%= user.username %></strong></p></h1>
         </div>
@@ -39,5 +66,15 @@
             </form>    
         </div>
     </div>
+    <script>
+        document.getElementById('settings-button').addEventListener('click', function() {
+            var console = document.getElementById('settings-console');
+            if (console.classList.contains('hidden')) {
+                console.classList.remove('hidden');
+            } else {
+                console.classList.add('hidden');
+            }
+        });
+    </script>
 </body>
 </html>
