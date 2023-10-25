@@ -40,6 +40,11 @@
                 <img src="/path-to-your-icon" alt="Icon" /> <!-- Replace with your icon path -->
                 <span>about</span>
             </div>
+            <div class="menu-item" id="logout-button">
+                <img src="/path-to-your-icon" alt="Icon" /> <!-- Replace with your icon path -->
+                <span>Logout</span>
+            </div>
+            
         </div>
 <!--SETTING'S OPTIONS------------------------------------------------------------------>
         <div id='user-info'>
@@ -51,6 +56,12 @@
             <p>No members in your inner circle yet.</p>
             <button>Add Member</button>
         </div>
+
+        <form id="logout-form" action="/logout" method="post" style="display: none;">
+            <input type="submit" value="Logout" />
+        </form>
+        
+
         <div id='photo-approval'>
             <h3>Photo Approval</h3>
             <p>No photos shared yet.</p>
@@ -61,11 +72,9 @@
             <p>No responses yet.</p>
         </div>
         <div class='footer'>
-            <form action="/logout" method="post">
-                <button type="submit">Logout</button>
-            </form>    
+  
         </div>
     </div>
-    <script src="/script.js" defer></script>
+    <script src="/scrpits.js" defer></script>
 </body>
 </html>

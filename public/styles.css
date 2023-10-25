@@ -204,13 +204,36 @@ a:hover {
 
 #settings-console {
     position: absolute;
-    top: 70px; /* position below the button, adjust as needed */
+    top: 70px; 
     right: 10px;
-    background-color: #ffd1dc; /* pastel pink-orange */
+    width: 250px; /* or whatever width you desire */
+    background-color: #5e6063b0;
     border-radius: 15px;
     padding: 20px;
-    z-index: 999; /* slightly below the button */
-    /* other styling as needed */
+    z-index: 999;
+    transform-origin: top right; /* This ensures the scaling happens from the top right corner */
+    opacity: 0;
+    transform: scale(0.95);
+    transition: transform 0.5s, opacity 0.5s;
+}
+
+@keyframes shrinkHide {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+}
+
+
+#settings-console:not(.hidden) {
+    /* existing styles... */
+    animation: pulse 0.25s ease 1; /* name, duration, timing-function, iteration-count */
+    opacity: 1;
+    transform: scale(1); /* end at normal size */
 }
 
 #settings-console .menu-item {
@@ -227,5 +250,18 @@ a:hover {
 
 .hidden {
     display: none;
+    opacity: 0; /* ensure it's fully transparent when hidden */
+    transform: scale(0.95); /* start slightly smaller */
 }
 /*--SETTING'S OPTIONS------------------------------------------------------------------*/
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
